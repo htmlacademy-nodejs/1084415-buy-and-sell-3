@@ -68,11 +68,11 @@ const getPictureFileName = (number) => `item${number.toString().padStart(2, 0)}.
 
 const generateOffers = (count) => (
   Array(count).fill({}).map(() => ({
-    category: [CATEGORIES[getRandomInt(0, CATEGORIES.length - 1)]],
-    description: shuffleArray(SENTENCES).slice(1, 5).join(` `),
+    category: shuffleArray(CATEGORIES).slice(0, getRandomInt(0, CATEGORIES.length - 1)).join(`, `),
+    description: shuffleArray(SENTENCES).slice(1, getRandomInt(2, SENTENCES.length - 1)).join(` `),
     picture: getPictureFileName(getRandomInt(PictureRestrict.MIN, PictureRestrict.MAX)),
     title: TITLES[getRandomInt(0, TITLES.length - 1)],
-    type: OfferType[Object.keys(OfferType)[Math.floor(Math.random() * Object.keys(OfferType).length)]],
+    type: OfferType[Object.keys(OfferType)[getRandomInt(0, Object.keys(OfferType).length)]],
     sum: getRandomInt(SumRestrict.MIN, SumRestrict.MAX),
   }))
 );
